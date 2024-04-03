@@ -1,19 +1,30 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 
 function PrimaryButton({ children }: { children: React.ReactNode }) {
+  function pressHandler() {
+    console.log("Button pressed");
+  }
   return (
-    <View>
-      <Text>{children}</Text>
-    </View>
+    <Pressable onPress={pressHandler}>
+      <View style={styles.container}>
+        <Text style={styles.buttonText}>{children}</Text>
+      </View>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  // Add support for light and dark themes
+  container: {
+    backgroundColor: "#373A3E",
+    borderRadius: 40,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
   },
 });
 
