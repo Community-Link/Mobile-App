@@ -6,19 +6,28 @@ function PrimaryButton({ children }: { children: React.ReactNode }) {
     console.log("Button pressed");
   }
   return (
-    <Pressable onPress={pressHandler}>
-      <View style={styles.container}>
+    <View style={styles.buttonOuterContainer}>
+      <Pressable
+        style={styles.buttonInnerContainer}
+        onPress={pressHandler}
+        android_ripple={{ color: "#41454a" }}
+      >
         <Text style={styles.buttonText}>{children}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  // Add support for light and dark themes
-  container: {
-    backgroundColor: "#373A3E",
+  // TODO: Add support for light and dark themes
+  // ! Dedicated pressed style for iOS not applied
+  buttonOuterContainer: {
     borderRadius: 40,
+    margin: 4,
+    overflow: "hidden",
+  },
+  buttonInnerContainer: {
+    backgroundColor: "#373A3E",
     paddingVertical: 16,
     paddingHorizontal: 24,
   },
