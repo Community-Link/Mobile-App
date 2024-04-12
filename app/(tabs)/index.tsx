@@ -12,8 +12,8 @@ export default function TabOneScreen() {
           <CardTitle>Wallet Balance</CardTitle>
         </CardHeader>
         <CardContent>
-          <PrimaryButton>Send</PrimaryButton>
-          <PrimaryButton>Receive</PrimaryButton>
+          <PrimaryButton icon="ArrowUpRight">Send</PrimaryButton>
+          <PrimaryButton icon="ArrowDownLeft">Receive</PrimaryButton>
         </CardContent>
       </Card>
       <Card>
