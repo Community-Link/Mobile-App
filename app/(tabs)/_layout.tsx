@@ -1,28 +1,12 @@
 import React from "react";
-import { icons, HelpCircle } from "lucide-react-native";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
+import { HelpCircle } from "lucide-react-native";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-
-type IconProps = {
-  name: keyof typeof icons; // Ensures that name is a valid key of the icons object
-  color: string;
-  size?: number; // Made size optional with a default value, similar to how size is fixed in TabBarIcon
-};
-
-const Icon: React.FC<IconProps> = ({ name, color, size = 24 }) => {
-  const LucideIcon = icons[name];
-  if (!LucideIcon) {
-    // Optionally handle the case where the icon name does not exist in the icons object
-    console.error(`Icon "${name}" not found in lucide-icons`);
-    return null;
-  }
-
-  return <LucideIcon color={color} size={size} style={{ marginBottom: -3 }} />;
-};
+import { Icon } from "@/components/Icon";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
