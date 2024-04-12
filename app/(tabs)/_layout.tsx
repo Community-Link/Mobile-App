@@ -1,5 +1,5 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { icons, HelpCircle } from "lucide-react-native";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
 
@@ -7,13 +7,22 @@ import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+type IconProps = {
+  name: keyof typeof icons; // Ensures that name is a valid key of the icons object
   color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+  size?: number; // Made size optional with a default value, similar to how size is fixed in TabBarIcon
+};
+
+const Icon: React.FC<IconProps> = ({ name, color, size = 24 }) => {
+  const LucideIcon = icons[name];
+  if (!LucideIcon) {
+    // Optionally handle the case where the icon name does not exist in the icons object
+    console.error(`Icon "${name}" not found in lucide-icons`);
+    return null;
+  }
+
+  return <LucideIcon color={color} size={size} style={{ marginBottom: -3 }} />;
+};
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -31,13 +40,12 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <Icon name="Home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="question-circle-o"
+                  <HelpCircle
                     size={25}
                     color={Colors[colorScheme ?? "light"].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
@@ -49,10 +57,31 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="data"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Data",
+          tabBarIcon: ({ color }) => <Icon name="Antenna" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="wallet"
+        options={{
+          title: "Wallet",
+          tabBarIcon: ({ color }) => <Icon name="Wallet" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="community"
+        options={{
+          title: "Community",
+          tabBarIcon: ({ color }) => <Icon name="Command" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Community",
+          tabBarIcon: ({ color }) => <Icon name="Settings2" color={color} />,
         }}
       />
     </Tabs>
