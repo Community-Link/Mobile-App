@@ -1,48 +1,32 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { Text, TextInput, View } from "@/components/Themed";
-import PrimaryButton from "@/components/PrimaryButton";
+import { Text, View } from "@/components/Themed";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
+import { WalletBalance } from "@/components/WalletBalance";
+import Avatar from "@/components/Avatar";
+import { Favorites } from "@/components/Favorites";
+import { Transaction } from "@/components/Transaction";
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Wallet Balance</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <PrimaryButton icon="ArrowUpRight">Send</PrimaryButton>
-          <PrimaryButton icon="ArrowDownLeft">Receive</PrimaryButton>
-        </CardContent>
-      </Card>
+      <WalletBalance />
       <Card>
         <CardHeader>
           <CardTitle>Data Left</CardTitle>
         </CardHeader>
         <CardContent>
-          <PrimaryButton>Send</PrimaryButton>
-          <PrimaryButton>Receive</PrimaryButton>
+          <Text>Users Placeholder</Text>
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Favorites</CardTitle>
-          <Text>View All</Text>
-        </CardHeader>
-        <CardContent>
-          <PrimaryButton>Send</PrimaryButton>
-          <PrimaryButton>Receive</PrimaryButton>
-        </CardContent>
-      </Card>
+      <Favorites />
       <Card>
         <CardHeader>
           <CardTitle>Latest Transactions</CardTitle>
           <Text>View All</Text>
         </CardHeader>
         <CardContent>
-          <PrimaryButton>Send</PrimaryButton>
-          <PrimaryButton>Receive</PrimaryButton>
+          <Transaction />
         </CardContent>
       </Card>
       <View
@@ -71,8 +55,12 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
-  buttonContainer: {
+  buttonsContainer: {
     flexDirection: "row",
+    backgroundColor: "transparent",
+  },
+  buttonContainer: {
+    flex: 1,
     backgroundColor: "transparent",
   },
 });

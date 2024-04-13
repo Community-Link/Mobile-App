@@ -2,11 +2,11 @@ import { icons } from "lucide-react-native";
 
 type IconProps = {
   name: keyof typeof icons; // Ensures that name is a valid key of the icons object
-  color: string;
+  color?: string;
   size?: number; // Made size optional with a default value, similar to how size is fixed in TabBarIcon
 };
 
-const Icon: React.FC<IconProps> = ({ name, color, size = 24 }) => {
+const Icon: React.FC<IconProps> = ({ name, color = "white", size = 24 }) => {
   const LucideIcon = icons[name];
   if (!LucideIcon) {
     // Optionally handle the case where the icon name does not exist in the icons object

@@ -19,7 +19,7 @@ function CardContent({ children }: { children: React.ReactNode }) {
   return <View style={styles.cardContent}>{children}</View>;
 }
 
-function CardFoot({ children }: { children: React.ReactNode }) {
+function CardFooter({ children }: { children: React.ReactNode }) {
   return <View style={styles.cardContent}>{children}</View>;
 }
 
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Card, CardHeader, CardTitle, CardContent, CardFoot };
+export { Card, CardHeader, CardTitle, CardContent, CardFooter };

@@ -20,7 +20,7 @@ function PrimaryButton({ children, icon }: PrimaryButtonProps) {
         onPress={pressHandler}
         android_ripple={{ color: "#41454a" }}
       >
-        {icon && <Icon name={icon} color="white" size={16} />}
+        {icon && <Icon name={icon} size={16} />}
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>
