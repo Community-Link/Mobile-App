@@ -1,46 +1,29 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import { Text, View } from "@/components/Themed";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
 import { WalletBalance } from "@/components/WalletBalance";
-import Avatar from "@/components/Avatar";
 import { Favorites } from "@/components/Favorites";
-import { Transaction } from "@/components/Transaction";
+import { LatestTransactions } from "@/components/LatestTransactions";
+import { DataRemainingCard } from "@/components/DataRemainingCard";
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <WalletBalance />
-      <Card>
-        <CardHeader>
-          <CardTitle>Data Left</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Text>Users Placeholder</Text>
-        </CardContent>
-      </Card>
-      <Favorites />
-      <Card>
-        <CardHeader>
-          <CardTitle>Latest Transactions</CardTitle>
-          <Text>View All</Text>
-        </CardHeader>
-        <CardContent>
-          <Transaction />
-        </CardContent>
-      </Card>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+    <View style={styles.appContainer}>
+      <ScrollView contentContainerStyle={styles.scrollableContainer}>
+        <WalletBalance />
+        <DataRemainingCard />
+        <Favorites />
+        <LatestTransactions />
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
+  },
+  scrollableContainer: {
     alignItems: "center",
     gap: 16,
     paddingHorizontal: 8,

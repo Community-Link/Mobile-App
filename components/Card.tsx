@@ -1,26 +1,70 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import {
+  Text as DefaultText,
+  View as DefaultView,
+  StyleSheet,
+} from "react-native";
 import Colors from "@/constants/Colors";
-import { Text, View } from "@/components/Themed";
+import {
+  Text,
+  TextProps,
+  useThemeColor,
+  View,
+  ViewProps,
+} from "@/components/Themed";
 
-function Card({ children }: { children: React.ReactNode }) {
-  return <View style={styles.card}>{children}</View>;
+function Card(props: ViewProps) {
+  const { style, lightColor, darkColor, children, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "card"
+  );
+  return (
+    <DefaultView
+      style={[{ backgroundColor }, styles.card, style]}
+      {...otherProps}
+    >
+      {children}
+    </DefaultView>
+  );
 }
 
-function CardHeader({ children }: { children: React.ReactNode }) {
-  return <View style={styles.cardHeader}>{children}</View>;
+function CardHeader(props: ViewProps) {
+  const { style, lightColor, darkColor, children, ...otherProps } = props;
+  return (
+    <DefaultView style={[styles.cardHeader, style]} {...otherProps}>
+      {children}
+    </DefaultView>
+  );
 }
 
-function CardTitle({ children }: { children: React.ReactNode | string }) {
-  return <Text style={styles.cardTitle}>{children}</Text>;
+function CardTitle(props: TextProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "sectionHeader"
+  );
+
+  return (
+    <DefaultText style={[{ color }, styles.cardTitle, style]} {...otherProps} />
+  );
 }
 
-function CardContent({ children }: { children: React.ReactNode }) {
-  return <View style={styles.cardContent}>{children}</View>;
+function CardContent(props: ViewProps) {
+  const { style, lightColor, darkColor, children, ...otherProps } = props;
+  return (
+    <DefaultView style={[styles.cardContent, style]} {...otherProps}>
+      {children}
+    </DefaultView>
+  );
 }
 
-function CardFooter({ children }: { children: React.ReactNode }) {
-  return <View style={styles.cardContent}>{children}</View>;
+function CardFooter(props: ViewProps) {
+  const { style, lightColor, darkColor, children, ...otherProps } = props;
+  return (
+    <DefaultView style={[styles.cardFooter, style]} {...otherProps}>
+      {children}
+    </DefaultView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -31,16 +75,16 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     backgroundColor: "transparent",
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 16,
-    paddingTop: 0,
+    padding: 16,
   },
   cardHeader: {
+    alignItems: "center",
+    backgroundColor: "transparent",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "transparent",
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 0,
   },
   cardTitle: {
     fontSize: 14,
@@ -48,6 +92,7 @@ const styles = StyleSheet.create({
   },
   cardFooter: {
     backgroundColor: "transparent",
+    flexDirection: "row",
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 16,

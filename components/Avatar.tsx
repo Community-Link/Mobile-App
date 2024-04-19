@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ImageSourcePropType,
+} from "react-native";
 
 const Avatar = ({
   imageUri,
   name,
   size = 50,
 }: {
-  imageUri?: string;
+  imageUri?: ImageSourcePropType;
   name: string;
   size?: number;
 }) => {
@@ -24,7 +30,7 @@ const Avatar = ({
     >
       {imageUri ? (
         <Image
-          source={{ uri: imageUri }}
+          source={imageUri}
           style={{ height: size, width: size, borderRadius: size / 2 }}
           resizeMode="cover"
         />
@@ -41,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#cccccc", // Grey background for the fallback
+    backgroundColor: "#3994FF",
     overflow: "hidden",
   },
   initials: {

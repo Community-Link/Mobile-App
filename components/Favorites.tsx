@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./Card";
 import Avatar from "./Avatar";
@@ -7,28 +7,33 @@ import { Text, View } from "@/components/Themed";
 const placeholderData = [
   {
     name: "Hank",
-    imageUri: "https://randomuser.me/api/portraits",
+    imageUri: require("../assets/images/person1.png"),
   },
   {
     name: "John",
-    imageUri: "https://randomuser.me/api/portraits",
+    imageUri: require("../assets/images/person2.png"),
   },
   {
     name: "Rose",
-    imageUri: "https://randomuser.me/api/portraits",
+    imageUri: null,
   },
   {
     name: "Alice",
-    imageUri: "https://randomuser.me/api/portraits",
+    imageUri: require("../assets/images/person3.png"),
   },
 ];
 
 const Favorites = () => {
+  function pressHandler() {
+    console.log("Favorites View All pressed");
+  }
   return (
     <Card>
       <CardHeader>
         <CardTitle>Favorites</CardTitle>
-        <Text>View All</Text>
+        <Pressable onPress={pressHandler}>
+          <Text style={{ fontSize: 12, color: "#9EA3A7" }}>View All</Text>
+        </Pressable>
       </CardHeader>
       <CardContent>
         <View style={styles.avatarsContainer}>

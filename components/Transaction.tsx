@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { ImageSourcePropType, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./Card";
 import PrimaryButton from "./PrimaryButton";
@@ -8,20 +8,36 @@ import { Icon } from "./Icon";
 import { View, Text, useThemeColor } from "./Themed";
 import Colors from "@/constants/Colors";
 
-const Transaction = () => {
+type TransactionProps = {
+  name: string;
+  date: string;
+  value: number;
+  currency: string;
+  imageUri?: ImageSourcePropType;
+  icon: "ArrowUpRight" | "ArrowDownLeft";
+};
+
+const Transaction = ({
+  name,
+  date,
+  value,
+  currency,
+  imageUri,
+  icon,
+}: TransactionProps) => {
   return (
     <View style={styles.transactionContainer}>
-      <Avatar name="Hank" />
+      <Avatar name="Hank" imageUri={imageUri} />
       <View style={styles.textContainer}>
-        <Text style={styles.name}>Jie</Text>
-        <Text style={styles.date}>September 29th</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
       <View style={styles.currencyContainer}>
-        <Text style={styles.value}>2.21</Text>
-        <Text style={styles.currency}>USDC</Text>
+        <Text style={styles.value}>{value}</Text>
+        <Text style={styles.currency}>{currency}</Text>
       </View>
       <View style={styles.iconContainer}>
-        <Icon name="ArrowUpRight" />
+        <Icon name={icon} size={28} />
       </View>
     </View>
   );
@@ -29,40 +45,42 @@ const Transaction = () => {
 
 const styles = StyleSheet.create({
   transactionContainer: {
-    flexDirection: "row",
     alignItems: "center",
-    gap: 8,
     backgroundColor: "transparent",
+    flexDirection: "row",
+    gap: 8,
+    paddingVertical: 8,
   },
   textContainer: {
+    backgroundColor: "transparent",
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "transparent",
   },
   name: {
     fontSize: 20,
     fontWeight: "700",
   },
   date: {
+    color: Colors.dark.label,
     fontSize: 12,
     fontWeight: "300",
-    color: Colors.dark.label,
   },
   currencyContainer: {
-    flexDirection: "column",
     backgroundColor: "transparent",
+    flexDirection: "column",
   },
   value: {
     fontSize: 20,
     fontWeight: "700",
   },
   currency: {
+    color: Colors.dark.label,
     fontSize: 12,
     fontWeight: "300",
-    color: Colors.dark.label,
   },
   iconContainer: {
     backgroundColor: "transparent",
+    flexDirection: "row",
   },
 });
 

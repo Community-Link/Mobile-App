@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./Card";
 import PrimaryButton from "./PrimaryButton";
-import CurvedProgressBar from "./CurvedProgressBar";
+import { View, Text } from "./Themed";
+import Colors from "@/constants/Colors";
 
 const WalletBalance = () => {
   return (
@@ -11,25 +11,30 @@ const WalletBalance = () => {
       <CardHeader>
         <CardTitle>Wallet Balance</CardTitle>
       </CardHeader>
-      <CardContent>
-        <View style={styles.progressContainer}>
-          {/* <CurvedProgressBar progress={70} /> */}
+      <CardContent style={styles.content}>
+        <View style={styles.rows}>
+          <Text style={styles.primaryValue}>127</Text>
+          <Text style={styles.primaryLabel}>USDC</Text>
+        </View>
+        <View style={styles.rows}>
+          <Text style={styles.secondaryValue}>497357.40</Text>
+          <Text style={styles.secondaryLabel}>UGX</Text>
         </View>
       </CardContent>
       <CardFooter>
         {/* TODO: Scrollable */}
         {/* <ScrollView horizontal> */}
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton icon="ArrowUpRight">Send</PrimaryButton>
-          </View>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton icon="ArrowDownLeft">Receive</PrimaryButton>
-          </View>
-          {/* <View style={styles.buttonContainer}>
+
+        <View style={styles.buttonContainer}>
+          <PrimaryButton icon="ArrowUpRight">Send</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton icon="ArrowDownLeft">Receive</PrimaryButton>
+        </View>
+        {/* <View style={styles.buttonContainer}>
                 <PrimaryButton icon="Twitter">Share</PrimaryButton>
               </View> */}
-        </View>
+
         {/* </ScrollView> */}
       </CardFooter>
     </Card>
@@ -37,14 +42,32 @@ const WalletBalance = () => {
 };
 
 const styles = StyleSheet.create({
-  progressContainer: {
-    flex: 1,
+  content: {
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonsContainer: {
-    flexDirection: "row",
+  rows: {
     backgroundColor: "transparent",
+    flexDirection: "row",
+    gap: 2,
+    justifyContent: "center",
+    alignItems: "baseline",
+  },
+  primaryValue: {
+    fontSize: 48,
+    fontWeight: "bold",
+  },
+  primaryLabel: {
+    color: Colors.dark.label,
+    fontSize: 16,
+  },
+  secondaryValue: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  secondaryLabel: {
+    fontSize: 10,
+    color: Colors.dark.label,
   },
   buttonContainer: {
     flex: 1,
